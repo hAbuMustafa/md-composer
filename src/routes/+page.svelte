@@ -114,3 +114,11 @@
     width="98%"
   />
 {/await}
+
+<!-- todo: add file saving to local storage (for both the raw markdown and the parsed html) -->
+
+<!-- todo: add multi-caret support -->
+
+<!-- todo: add syntax highlighting for the raw markdown and styles -->
+
+<!-- fix: shifting lines with alt+arrow up/down doesn't save updates nor update the preview -->
