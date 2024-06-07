@@ -88,17 +88,20 @@
 <textarea
   name="md-raw"
   id="md-raw"
-  style:width="73%"
+  style:width="70%"
   rows="10"
+  class="md"
   bind:value={raw_md}
   on:keydown={handleLinesShift}
   on:input={saveAll}
 />
+
 <textarea
   name="styles-raw"
   id="styles-raw"
   style:width="25%"
   rows="10"
+  class="styles"
   bind:value={styles}
   on:input={saveAll}
 />
@@ -110,8 +113,9 @@
     srcdoc={html}
     frameborder="16"
     title="Markdown Preview"
+    class="preview"
     height="550vh"
-    width="98%"
+    width="97.5%"
   />
 {/await}
 
@@ -122,3 +126,19 @@
 <!-- todo: add syntax highlighting for the raw markdown and styles -->
 
 <!-- fix: shifting lines with alt+arrow up/down doesn't save updates nor update the preview -->
+
+<style>
+  textarea {
+    font-family: monospace;
+    font-size: 1.2em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+  }
+
+  iframe {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+  }
+</style>
