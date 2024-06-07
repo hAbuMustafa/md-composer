@@ -1,9 +1,17 @@
 <script lang="ts">
+  import { browser } from '$app/environment';
   import { marked } from 'marked';
 
-  let raw_md = '# Hello, World!';
+  let raw_md = !!browser
+    ? localStorage.getItem('md-raw') ?? '# Hello, World!'
+    : '# Hello, World!';
 
-  let styles = `h1,h2,h3,h4,h5,h6 {
+  let styles = !!browser
+    ? localStorage.getItem('md-styles') ??
+      `h1,h2,h3,h4,h5,h6 {
+  text-transform: capitalize;
+}`
+    : `h1,h2,h3,h4,h5,h6 {
   text-transform: capitalize;
 }`;
 
@@ -68,6 +76,11 @@
       }
     }
   }
+
+  function saveAll() {
+    localStorage.setItem('md-raw', raw_md);
+    localStorage.setItem('md-styles', styles);
+  }
 </script>
 
 <h1>Markdown Composer</h1>
@@ -79,6 +92,7 @@
   rows="10"
   bind:value={raw_md}
   on:keydown={handleLinesShift}
+  on:input={saveAll}
 />
 <textarea
   name="styles-raw"
@@ -86,6 +100,7 @@
   style:width="25%"
   rows="10"
   bind:value={styles}
+  on:input={saveAll}
 />
 
 {#await marked.parse(raw)}
