@@ -141,4 +141,6 @@
     border-radius: 4px;
     padding: 10px;
   }
+
+  /* todo: add an ::after tag to the textarea to denote 'css' and 'md' apart */
 </style>
